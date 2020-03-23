@@ -20,8 +20,10 @@ export default ({
   const vfactor = (height - margin * 2 - textHeight) / ((max - min) || 2)
   const hfactor = (width - margin * 2) / ((limit || len) - (len > 1 ? 1 : 0))
 
+  const x0 = data.length < limit ? limit - data.length : 0;
+
   return data.map((d, i) => ({
-    x: i * hfactor + margin,
+    x: (i + x0) * hfactor + margin,
     y: (max === min ? 1 : (max - d)) * vfactor + margin + textHeight
   }))
 }
