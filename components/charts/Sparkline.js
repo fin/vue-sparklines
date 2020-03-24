@@ -78,7 +78,6 @@ export default {
     })
   },
   mounted () {
-    console.log('vue-sparkline ohai');
     //const fragment = document.createDocumentFragment()
 
     //fragment.appendChild(this.$refs.sparklineTooltip)
