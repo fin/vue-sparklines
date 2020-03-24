@@ -53,7 +53,8 @@ export default {
         minWidth: '30px',
         padding: '3px',
         color: '#fff',
-        fontSize: '12px'
+        fontSize: '12px',
+        pointerEvents: 'none'
       })
     }
   },
@@ -77,10 +78,11 @@ export default {
     })
   },
   mounted () {
-    const fragment = document.createDocumentFragment()
+    console.log('vue-sparkline ohai');
+    //const fragment = document.createDocumentFragment()
 
-    fragment.appendChild(this.$refs.sparklineTooltip)
-    document.body.appendChild(fragment)
+    //fragment.appendChild(this.$refs.sparklineTooltip)
+    //document.body.appendChild(fragment)
   },
   beforeDestroy () {
     const tooltip = this.$refs.sparklineTooltip
@@ -129,8 +131,8 @@ export default {
         }
       }
       if (rect) {
-        tooltip.style.left = `${this.curEvt.cx + rect.width * .25}px`
-        tooltip.style.top = `${this.curEvt.cy - rect.height}px`
+        tooltip.style.left = `${this.curEvt.ox}px`
+        tooltip.style.top = `${this.curEvt.oy-10}px`
         tooltip.style.zIndex = this.zIndex
         try {
           tooltip.innerHTML = this.tooltipProps.formatter(curData) || tooltipContent
@@ -163,7 +165,8 @@ export default {
     const slots = this.$slots.default
 
     return h('div', {
-      'class': 'sparkline-wrap'
+      'class': 'sparkline-wrap',
+      'style': 'position: relative'
     }, [
       h('svg', {
         style: styles,
